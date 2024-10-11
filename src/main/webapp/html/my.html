@@ -1,11 +1,174 @@
+<!doctype html>
 <html>
 <head>
     <title>RPG</title>
-    <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
     <link href="/css/my.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <h1>RPG admin panel</h1>
+<div>
+    <div>
+        <label>Accounts on page: </label>
+        <select id="accounts-per-page"></select>
+    </div>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAccountModal">
+        Create New Account
+    </button>
+
+    <table style="width:100%" id="table-main">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Race</th>
+            <th>Profession</th>
+            <th>Level</th>
+            <th>Birthday</th>
+            <th>Banned</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div id="pages">
+    <label>Pages: </label>
+    <div id="pagination-buttons">
+    </div>
+</div>
+
+<div id="createAccountModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create New Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createAccountForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="race">Race</label>
+                        <select class="form-control" name="race">
+                            <option value="HUMAN">HUMAN</option>
+                            <option value="DWARF">DWARF</option>
+                            <option value="ELF">ELF</option>
+                            <option value="GIANT">GIANT</option>
+                            <option value="ORC">ORC</option>
+                            <option value="TROLL">TROLL</option>
+                            <option value="HOBBIT">HOBBIT</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="profession">Profession</label>
+                        <select class="form-control" name="profession">
+                            <option value="WARRIOR">WARRIOR</option>
+                            <option value="ROGUE">ROGUE</option>
+                            <option value="SORCERER">SORCERER</option>
+                            <option value="CLERIC">CLERIC</option>
+                            <option value="PALADIN">PALADIN</option>
+                            <option value="NAZGUL">NAZGUL</option>
+                            <option value="WARLOCK">WARLOCK</option>
+                            <option value="DRUID">DRUID</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="level">Level</label>
+                        <input type="number" class="form-control" name="level">
+                    </div>
+                    <div class="form-group">
+                        <label for="birthday">Birthday</label>
+                        <input type="date" class="form-control" name="birthday">
+                    </div>
+                    <div class="form-group">
+                        <label for="banned">Banned</label>
+                        <input type="checkbox" class="form-control" name="banned">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="createAccount()">Create Account</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="editModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editAccountForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="race">Race</label>
+                        <select class="form-control" name="race">
+                            <option value="HUMAN">HUMAN</option>
+                            <option value="DWARF">DWARF</option>
+                            <option value="ELF">ELF</option>
+                            <option value="GIANT">GIANT</option>
+                            <option value="ORC">ORC</option>
+                            <option value="TROLL">TROLL</option>
+                            <option value="HOBBIT">HOBBIT</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="profession">Profession</label>
+                        <select class="form-control" name="profession">
+                            <option value="WARRIOR">WARRIOR</option>
+                            <option value="ROGUE">ROGUE</option>
+                            <option value="SORCERER">SORCERER</option>
+                            <option value="CLERIC">CLERIC</option>
+                            <option value="PALADIN">PALADIN</option>
+                            <option value="NAZGUL">NAZGUL</option>
+                            <option value="WARLOCK">WARLOCK</option>
+                            <option value="DRUID">DRUID</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="banned">Banned</label>
+                        <input type="checkbox" class="form-control" name="banned">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary save">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/js/my.js" defer></script>
 
 </body>
 </html>

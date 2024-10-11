@@ -1,0 +1,81 @@
+table, th, td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 8px;
+    font-family: Arial, sans-serif;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+#pagination-buttons button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+#pagination-buttons button {
+    margin: 2px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #e7e7e7;
+    cursor: pointer;
+}
+
+#pagination-buttons button:hover {
+    background-color: #ddd;
+}
+
+div #pages {
+    margin: auto;
+    padding: inherit;
+    background-color: aquamarine;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+button.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+button.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.modal-header {
+    background-color: #007bff;
+    color: white;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+}
